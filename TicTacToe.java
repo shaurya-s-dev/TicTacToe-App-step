@@ -1,36 +1,34 @@
-public class UC2_TicTacToe {
+public class UC1_TicTacToe {
 
-    static char humanSymbol;
-    static char compSymbol;
-    static String currentPlayer;
+    static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
 
-        System.out.println("=== UC2: Toss to Decide First Player ===");
-        System.out.println();
-        performToss();
+        initBoard();
 
-        System.out.println("Current Player : " + currentPlayer);
-        System.out.println("Human  Symbol  : " + humanSymbol);
-        System.out.println("Computer Symbol: " + compSymbol);
+        System.out.println("=== UC1: Display Empty Board ===");
+        System.out.println();
+        displayBoard();
     }
 
-    // Randomly decide who plays first and assign X / O
-    static void performToss() {
-        int toss = (int) (Math.random() * 2);   // generates 0 or 1
+    // Initialize all cells with '-'
+    static void initBoard() {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                board[row][col] = '-';
+            }
+        }
+    }
 
-        if (toss == 0) {
-            humanSymbol   = 'X';
-            compSymbol    = 'O';
-            currentPlayer = "human";
-            System.out.println("Toss Result : YOU win the toss!");
-            System.out.println("You play X  and go FIRST.");
-        } else {
-            humanSymbol   = 'O';
-            compSymbol    = 'X';
-            currentPlayer = "computer";
-            System.out.println("Toss Result : COMPUTER wins the toss!");
-            System.out.println("Computer plays X and goes FIRST.");
+    // Print the board to console
+    static void displayBoard() {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                System.out.print(board[row][col]);
+                if (col < 2) System.out.print(" | ");
+            }
+            System.out.println();
+            if (row < 2) System.out.println("---------");
         }
         System.out.println();
     }
